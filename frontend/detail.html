@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CVE Detail</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>CVE Details</h1>
+
+    <!-- ✅ Main detail box -->
+    <div id="cveDetail" class="detail-box">
+      <p>Loading...</p>
+    </div>
+
+    <!-- ✅ Back button moved BELOW -->
+    <div class="back-container">
+      <button class="backBtn" onclick="window.location.href='index.html'">⬅ Back to CVE List</button>
+    </div>
+  </div>
+
+  <script>
+    const BASE_URL = "http://localhost:5000/api/cves";
+    const params = new URLSearchParams(window.location.search);
+    const cveId = params.get("id");
+
+    async function fetchCveDetail() {
+      try {
+        const res = await fetch(`${BASE_URL}/${cveId}`);
+        const data = await res.json();
+
+        // ✅ Display only same info as in list
+        document.getElementById("cveDetail").innerHTML = `
+          <p><strong>CVE ID:</strong> ${data.cve_id}</p>
+          <p><strong>Identifier:</strong> ${data.identifier}</p>
+          <p><strong>Published Date:</strong> ${data.published_date}</p>
+          <p><strong>Last Modified Date:</strong> ${data.last_modified_date}</p>
+          <p><strong>Status:</strong> ${data.status}</p>
+        `;
+      } catch (error) {
+        document.getElementById("cveDetail").innerHTML = `<p style="color:red;">Error loading CVE details.</p>`;
+      }
+    }
+
+    fetchCveDetail();
+  </script>
+</body>
+</html>

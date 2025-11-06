@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CVE Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>CVE List</h1>
+
+    <!-- ✅ Total Records + Results Per Page (Top Section) -->
+    <div class="top-controls">
+      <div class="info">
+        <strong>Total Records:</strong> <span id="totalCount">0</span>
+      </div>
+      <div class="results">
+        <label for="resultsPerPage"><strong>Results Per Page:</strong></label>
+        <select id="resultsPerPage">
+          <option value="10" selected>10</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ✅ CVE Table -->
+    <table id="cveTable">
+      <thead>
+        <tr>
+          <th>CVE ID</th>
+          <th>Identifier</th>
+          <th>Published Date</th>
+          <th>Last Modified Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- ✅ Pagination -->
+    <div id="pagination">
+      <button id="prevBtn">Prev</button>
+      <span id="pageInfo"></span>
+      <button id="nextBtn">Next</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
